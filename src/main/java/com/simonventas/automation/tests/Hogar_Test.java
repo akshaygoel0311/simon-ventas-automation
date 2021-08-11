@@ -4,10 +4,12 @@ import java.util.Hashtable;
 
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.annotations.TestType;
 
 import com.simonventas.automation.commons.Hooks;
+import com.simonventas.automation.commons.dataproviders.DataProviderSource;
+import com.simonventas.automation.commons.utils.Log;
 import com.simonventas.automation.utils.DataProviders;
-import com.simonventas.automation.utils.Log;
 
 
 @Listeners(com.simonventas.automation.utils.TestListener.class)	
@@ -17,7 +19,11 @@ public class Hogar_Test extends Hooks{
 	public static Log log=new Log(Hogar_Test.class.getName());
 	ThreadLocal<VentasStepDef> steps= ThreadLocal.withInitial(VentasStepDef::new);
 
-	@Test(enabled=true,dataProviderClass=DataProviders.class,dataProvider="getData")
+	@Test(
+			enabled=true,
+			dataProviderClass=DataProviderSource.class,
+			dataProvider="getData", 
+			testType = TestType.WEB)
 	public void hogarFlows(Hashtable<String,String> data) {
 		String scenario=data.get("S.no");
 		

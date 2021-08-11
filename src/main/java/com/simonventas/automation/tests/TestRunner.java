@@ -2,7 +2,7 @@ package com.simonventas.automation.tests;
 
 import org.testng.TestNG;
 
-import com.simonventas.automation.utils.PropertyManager;
+import com.simonventas.automation.commons.utils.PropertyManager;
 
 public class TestRunner {
 	

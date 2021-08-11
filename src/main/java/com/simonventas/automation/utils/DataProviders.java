@@ -6,14 +6,18 @@ import java.util.Hashtable;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.simonventas.automation.commons.utils.DataUtil;
+import com.simonventas.automation.commons.utils.ExcelReader;
+import com.simonventas.automation.commons.utils.PropertyManager;
+
 public class DataProviders {
 
 
 
-	@Test(dataProvider="getData")
+	/*@Test(dataProvider="getData")
 	public void data(Hashtable<Object,Object> data) {
 			System.out.println(data.get("S.no")+"----"+data.get("Clave")+"-----"+data.get("Producto")+"----"+data.get("Num_Doc")+"----"+data.get("Ciudad")+"----"+data.get("Direccion")+"----"+data.get("Ano_Construccion")+"----"+data.get("Edifico")+"----"+	data.get("No_Electrico")+"----"+data.get("Electrico")+"----"+data.get("Numero_Pisos")+"----"+data.get("Barrio"));	
-	}
+	}*/
 
 	@DataProvider
 	public static Object[][] getData() {

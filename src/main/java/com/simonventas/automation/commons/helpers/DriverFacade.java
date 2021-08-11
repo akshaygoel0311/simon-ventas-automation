@@ -14,9 +14,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.simonventas.automation.commons.utils.Log;
+import com.simonventas.automation.commons.utils.PropertyManager;
 import com.simonventas.automation.tests.VentasStepDef;
-import com.simonventas.automation.utils.Log;
-import com.simonventas.automation.utils.PropertyManager;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 

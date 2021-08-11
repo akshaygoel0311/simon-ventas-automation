@@ -4,12 +4,12 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 
 import com.simonventas.automation.commons.helpers.DriverFactory;
+import com.simonventas.automation.commons.utils.DataUtil;
+import com.simonventas.automation.commons.utils.ExcelReader;
+import com.simonventas.automation.commons.utils.FlowUtil;
+import com.simonventas.automation.commons.utils.Log;
+import com.simonventas.automation.commons.utils.PropertyManager;
 import com.simonventas.automation.ui.RegressionUI;
-import com.simonventas.automation.utils.DataUtil;
-import com.simonventas.automation.utils.ExcelReader;
-import com.simonventas.automation.utils.FlowUtil;
-import com.simonventas.automation.utils.Log;
-import com.simonventas.automation.utils.PropertyManager;
 
 public class RegressionFlow extends RegressionUI{
 

@@ -9,12 +9,12 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import com.simonventas.automation.commons.helpers.DriverFactory;
+import com.simonventas.automation.commons.utils.DataUtil;
+import com.simonventas.automation.commons.utils.ExcelReader;
+import com.simonventas.automation.commons.utils.FlowUtil;
+import com.simonventas.automation.commons.utils.Log;
 import com.simonventas.automation.ui.HogarUI;
 import com.simonventas.automation.ui.SaludUI;
-import com.simonventas.automation.utils.DataUtil;
-import com.simonventas.automation.utils.ExcelReader;
-import com.simonventas.automation.utils.FlowUtil;
-import com.simonventas.automation.utils.Log;
 
 public class SaludFlow extends SaludUI {
 

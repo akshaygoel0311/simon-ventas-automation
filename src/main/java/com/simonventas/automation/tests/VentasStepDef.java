@@ -12,7 +12,7 @@ public class VentasStepDef {
 	
 	public static Logger log=Logger.getLogger(VentasStepDef.class);
 	
-	@Step
+	@Step("Simon ventas application login")
 	public Hogar_Test clickLogin(String url) {
 		new RegressionFlow().login(url);
 		return new Hogar_Test();
