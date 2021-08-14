@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="InLine Flow" >
+  <test name="Regression Testing"  >
+    <classes>
+      <class name="com.simonventas.automation.tests.TestHogar"/>
+    </classes>
+  </test>
+</suite> <!-- Suite -->
