@@ -20,10 +20,8 @@ public class HogarFlow extends HogarUI{
 	public static Log log=new Log(HogarFlow.class.getName());
 	
 
-	public  void gotoHogar(String s_no) {
+	public  void gotoHogar(int rowNum) {
 		if(FlowUtil.elementIsDisplayed(page_error)) {
-			int n=Integer.parseInt(s_no);
-			int rowNum=n+1;
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Cotizacion",rowNum, page_error.getText().substring(0, 53));
 			Assert.fail(page_error.getText());
 		}
@@ -33,15 +31,12 @@ public class HogarFlow extends HogarUI{
 			FlowUtil.waitTillVisibility(hogar_menu);
 			FlowUtil.movetoElementandClick(hogar_menu);
 			log.info("Navigated to Hogar Menu");
-			
 		}	
 	}
 
-	public void enterClave(String s_no,String agente) {
+	public void enterClave(int rowNum,String agente) {
 		waitTillInvisibilityofCargando();
 		if(FlowUtil.elementIsDisplayed(page_error)) {
-			int n=Integer.parseInt(s_no);
-			int rowNum=n+1;
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Cotizacion",rowNum, "Serivce Error");
 			Assert.fail("Service Error"+page_error.getText());
 		}
@@ -70,7 +65,7 @@ public class HogarFlow extends HogarUI{
 		FlowUtil.javascriptClick(siguiente3);
 	}
 
-	public void enterTomador(String s_no,String nro_documento  ) {
+	public void enterTomador(int rowNum,String nro_documento  ) {
 		
 		FlowUtil.javascriptClick(nrodocumento);
 		FlowUtil.clearvalue(nrodocumento);
@@ -84,8 +79,6 @@ public class HogarFlow extends HogarUI{
 				FlowUtil.sendvalue(nombre, DataUtil.newTomadorNombre);
 				FlowUtil.sendvalue(apellidos, DataUtil.newTomadorApellido);
 			}else {
-				int n=Integer.parseInt(s_no);
-				int rowNum=n+1;
 				dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Cotizacion",rowNum, tomador_error.getText().substring(0, 53));
 				dataExcel.setCellData(DataUtil.inputExcelSheetName, "Policy No", rowNum, "Not Executed");
 				dataExcel.setCellData(DataUtil.inputExcelSheetName, "Pass/Fail", rowNum, "Fail");
@@ -109,7 +102,7 @@ public class HogarFlow extends HogarUI{
 		FlowUtil.sendvalue(direccionRiesgo, direccion);
 		FlowUtil.pressTab();
 		waitTillInvisibilityofCargando();
-		FlowUtil.selectByValue(estrato, estratoNum);
+		FlowUtil.selectByValue(estrato,estratoNum);
 		FlowUtil.scrollToElement(anosConstruccion);
 		FlowUtil.movetoElement(anosConstruccion);
 		FlowUtil.selectByValue(anosConstruccion, ano_construction);
@@ -120,7 +113,7 @@ public class HogarFlow extends HogarUI{
 		FlowUtil.javascriptClick(riesgo_continuar);
 	}
 
-	public void enterValorAsegurado(String s_no,String edificio, String contenido_no_electrico, String contenido_electrico) {
+	public void enterValorAsegurado(int rowNum,String edificio, String contenido_no_electrico, String contenido_electrico) {
 		FlowUtil.javascriptClick(vr_edificio);
 		FlowUtil.sendvalue(vr_edificio, edificio);
 		FlowUtil.javascriptClick(vr_contenido_no_electrico);
@@ -132,8 +125,6 @@ public class HogarFlow extends HogarUI{
 		waitTillInvisibilityofCargando();
 		if(FlowUtil.isElementPresent(quoteNo)) {
 			log.info("Cotizacion No is : "+quoteNo.getText());
-			int n=Integer.parseInt(s_no);
-			int rowNum=n+1;
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Num_Cotizacion",rowNum , quoteNo.getText());
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Cotizacion",rowNum , "No");
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "CotizacionPDF",rowNum,"Not Executed");
@@ -141,8 +132,6 @@ public class HogarFlow extends HogarUI{
 		}
 		else if(FlowUtil.isElementPresent(error)){
 			log.info("Error is displayed on Crear Cotizacion:"+error.getText());
-			int n=Integer.parseInt(s_no);
-			int rowNum=n+1;
 			//dataExcel.setCellData("Hogar", "Num_Cotizacion",rowNum ," ");
 			//dataExcel.setCellData("Hogar", "Error", rowNum, " ");
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Num_Cotizacion", rowNum, "");
@@ -155,7 +144,7 @@ public class HogarFlow extends HogarUI{
 		}		
 	}
 
-	public void doEmitir(String s_no,String fechasegurida,String fechasegurida2,String pisos, String num_barrio) {
+	public void doEmitir(int rowNum,String fechasegurida,String fechasegurida2,String pisos, String num_barrio) {
 		FlowUtil.click(emitir);
 		log.info("Emision Started");
 		if(FlowUtil.isElementPresent(inspeccion_continuar)) {
@@ -242,8 +231,6 @@ public class HogarFlow extends HogarUI{
 				waitTillInvisibilityofCargando();
 			}
 			else if(FlowUtil.isElementPresent(add_tomador_error)){
-				int n=Integer.parseInt(s_no);
-				int rowNum=n+1;
 				dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Policy", rowNum, add_tomador_error.getText());
 				FlowUtil.takeFailedScreenshot("emisionPoliza");
 				Assert.fail("Error on Emision Poliza");
@@ -269,8 +256,6 @@ public class HogarFlow extends HogarUI{
 		waitTillInvisibilityofCargando();
 		if(FlowUtil.isElementPresent(error)) {
 			log.info("Error is displayed on Emision Poliza:"+error.getText());
-			int n=Integer.parseInt(s_no);
-			int rowNum=n+1;
 			//dataExcel.setCellData("Hogar", "Num_Cotizacion",rowNum ," ");
 			//dataExcel.setCellData("Hogar", "Error", rowNum, " ");
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Policy", rowNum, error.getText());
@@ -282,8 +267,6 @@ public class HogarFlow extends HogarUI{
 			FlowUtil.javascriptClick(acceptar);
 			String poliza=numero_poliza.getText();
 			log.info("Numero de poliza: "+poliza);
-			int n=Integer.parseInt(s_no);
-			int rowNum=n+1;
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Policy No", rowNum, poliza);
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Pass/Fail", rowNum, "Pass");
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Policy", rowNum, "No");
@@ -297,7 +280,7 @@ public class HogarFlow extends HogarUI{
 		
 	}
 	
-	public void copiarCotizacion(String s_no) {
+	public void copiarCotizacion(int rowNum) {
 		FlowUtil.click(copiar_quote);
 		waitTillInvisibilityofCargando();
 		log.info("clave nombre:"+clave_nombre.getText());
@@ -323,8 +306,6 @@ public class HogarFlow extends HogarUI{
 		waitTillInvisibilityofCargando();
 		if(FlowUtil.isElementPresent(quoteNo)) {
 			log.info("Cotizacion No is : "+quoteNo.getText());
-			int n=Integer.parseInt(s_no);
-			int rowNum=n+1;
 			//dataExcel.setCellData(DataUtil.inputExcelSheetName, "Num_Cotizacion",rowNum," ");
 			//dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error",rowNum ," ");
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Copiar_Cotizacion",rowNum , quoteNo.getText());
@@ -338,8 +319,6 @@ public class HogarFlow extends HogarUI{
 		}
 		else if(FlowUtil.isElementPresent(error)){
 			log.info("Error is displayed on Crear Cotizacion:"+error.getText());
-			int n=Integer.parseInt(s_no);
-			int rowNum=n+1;
 			//dataExcel.setCellData("Hogar", "Num_Cotizacion",rowNum ," ");
 			//dataExcel.setCellData("Hogar", "Error", rowNum, " ");
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Num_Cotizacion", rowNum, "");
@@ -354,7 +333,7 @@ public class HogarFlow extends HogarUI{
 		
 	}
 	
-	public void cotizacionPDF(String s_no) {
+	public void cotizacionPDF(int rowNum) {
 		String parentWindow=FlowUtil.getWindowHandle();
 		FlowUtil.movetoElement(pdf);
 		FlowUtil.click(pdf);
@@ -371,8 +350,6 @@ public class HogarFlow extends HogarUI{
 			}
 		}
 		FlowUtil.swichToWindow(parentWindow);
-		int n=Integer.parseInt(s_no);
-		int rowNum=n+1;
 		dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Cotizacion",rowNum , "No");
 		dataExcel.setCellData(DataUtil.inputExcelSheetName, "Policy No",rowNum , "Not Executed");
 		dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Policy",rowNum , "No");
@@ -385,7 +362,7 @@ public class HogarFlow extends HogarUI{
 		
 	}
 	
-	public void doEmitirPDF(String s_no,String pisos, String num_barrio) {
+	public void doEmitirPDF(int rowNum,String pisos, String num_barrio) {
 		FlowUtil.click(emitir);
 		log.info("Emision Started");
 		FlowUtil.click(alert);
@@ -458,8 +435,6 @@ public class HogarFlow extends HogarUI{
 				waitTillInvisibilityofCargando();
 			}
 			else if(FlowUtil.isElementPresent(add_tomador_error)){
-				int n=Integer.parseInt(s_no);
-				int rowNum=n+1;
 				dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Policy", rowNum, add_tomador_error.getText());
 				FlowUtil.takeFailedScreenshot("emisionPoliza");
 				Assert.fail("Error on Emision Poliza");
@@ -485,8 +460,6 @@ public class HogarFlow extends HogarUI{
 		waitTillInvisibilityofCargando();
 		if(FlowUtil.isElementPresent(error)) {
 			log.info("Error is displayed on Emision Poliza:"+error.getText());
-			int n=Integer.parseInt(s_no);
-			int rowNum=n+1;
 			//dataExcel.setCellData("Hogar", "Num_Cotizacion",rowNum ," ");
 			//dataExcel.setCellData("Hogar", "Error", rowNum, " ");
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Policy", rowNum, error.getText());
@@ -498,8 +471,6 @@ public class HogarFlow extends HogarUI{
 			FlowUtil.javascriptClick(acceptar);
 			String poliza=numero_poliza.getText();
 			log.info("Numero de poliza: "+poliza);
-			int n=Integer.parseInt(s_no);
-			int rowNum=n+1;
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Policy No", rowNum, poliza);
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Pass/Fail", rowNum, "Pass");
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Policy", rowNum, "No");
@@ -512,15 +483,12 @@ public class HogarFlow extends HogarUI{
 		
 	}
 	
-	public void policyPDF(String s_no) {
+	public void policyPDF(int rowNum) {
 		String parentWindow=FlowUtil.getWindowHandle();
 		if(FlowUtil.isElementPresent(warning_message)) {
-			int n=Integer.parseInt(s_no);
-			int rowNum=n+1;
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "CotizacionPDF", rowNum, "Not Executed");
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "PolicyPDF",rowNum ,warning_message.getText());
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Pass/Fail",rowNum , "Pass");
-
 		}
 		else {
 			FlowUtil.movetoElement(pdf);
@@ -538,8 +506,6 @@ public class HogarFlow extends HogarUI{
 				}
 			}
 			FlowUtil.swichToWindow(parentWindow);
-			int n=Integer.parseInt(s_no);
-			int rowNum=n+1;
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "CotizacionPDF", rowNum, "Not Executed");
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "PolicyPDF",rowNum , "Pass");
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Pass/Fail",rowNum , "Pass");

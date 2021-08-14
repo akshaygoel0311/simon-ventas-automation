@@ -1,4 +1,4 @@
-package com.simonventas.automation.commons;
+/*package com.simonventas.automation.commons;
 
 import java.io.ByteArrayInputStream;
 import java.text.SimpleDateFormat;
@@ -27,6 +27,12 @@ import io.qameta.allure.Attachment;
 
 
 public class TestListener implements ITestListener {
+	
+	public enum TestType {
+	    MOBILE,
+	    WEB,
+	    HYBRID
+	}
 	private static Log log = new Log(TestListener.class.getName());
 
  
@@ -91,13 +97,13 @@ public class TestListener implements ITestListener {
             System.out.println(params);
 
         }
-        /*
+        
         if (!isLocalDriver) {
             WebDriver driver = DriverWebBase.getCurrentDriver();
             ((JavascriptExecutor) driver).executeScript("lambda-status=passed");
         }
 
-         */
+         
        // sendTestMethodStatus(iTestResult, Constants.TEST_SUCCESS);
     }
 
@@ -128,3 +134,4 @@ public class TestListener implements ITestListener {
 	}
 
 }
+*/

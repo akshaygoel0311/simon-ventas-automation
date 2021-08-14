@@ -14,13 +14,13 @@ public class VentasStepDefSalud {
 	public static Logger log=Logger.getLogger(VentasStepDefSalud.class);
 	
 	@Step
-	public Salud_Test clickLogin(String url) {
+	public TestSalud clickLogin(String url) {
 		new RegressionFlow().login(url);
-		return new Salud_Test();
+		return new TestSalud();
 	}
 	
 	@Step
-	public Salud_Test saludCrearCotizacion(String rownum,String clave,String producto,
+	public TestSalud saludCrearCotizacion(String rownum,String clave,String producto,
 			String numdoc, String riesgo_Identification ,String Salud_occupacion,
 			String fecha, String teleFono, String cuidad, String direccion) 
 	{
@@ -31,16 +31,16 @@ public class VentasStepDefSalud {
 		s.enterTomador(rownum,numdoc,fecha,teleFono,cuidad,direccion);
 		s.enterRiesgo(rownum, riesgo_Identification,Salud_occupacion,fecha,cuidad );
 		//s.enterValorAsegurado(rownum,edifico,no_electrico,electrico);
-		return new Salud_Test();
+		return new TestSalud();
 	}
 
 	@Step
-	public Salud_Test saludCopiarCotizacion(String rownum,String clave,String producto, 
+	public TestSalud saludCopiarCotizacion(String rownum,String clave,String producto, 
 			String numdoc, String riesgo_Identification ,String Salud_occupacion, String weight, String height, String entidad) 
  {
 		SaludFlow h=new SaludFlow();
 		h.copiarCotizacion(rownum,producto,weight,height,entidad);
-		return new Salud_Test();
+		return new TestSalud();
 }
 }
 	/*@Step

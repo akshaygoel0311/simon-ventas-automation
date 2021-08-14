@@ -1,12 +1,10 @@
 package com.simonventas.automation.commons.utils;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.apache.log4j.Logger;
 
+import com.simonventas.automation.commons.helpers.DriverFactory;
 import com.simonventas.automation.commons.helpers.driver.DriverConstants;
-import com.simonventas.automation.commons.helpers.driver.web.DriverWebBase;
+import com.simonventas.automation.flow.RegressionFlow;
 
 
 public class InitAutomation {
@@ -15,10 +13,13 @@ public class InitAutomation {
 
     public static void initDriverFactories() {
         log.info("Start config Factories ....");
-        String nameExecution ="UI_"+ DriverConstants.WEB_PLATFORM_NAME+"_" + DriverConstants.WEB_TYPE_EXECUTE + "_" + new SimpleDateFormat("yyyy_MM_dd_hh:mm:ss").format(new Date());
-        DriverWebBase.nameExecutionLambda = nameExecution;
-        DriverWebBase.instantiateDriverObject();
+        DriverFactory.setWebDriver(PropertyManager.getConfigValueByKey("browserName"));
     }
+    public static void initApplicationBrowser() {
+        log.info("Start application browser with url ....");
+        new RegressionFlow().login(DriverConstants.WEB_URL_ENVIRONMENT);
+    }
+    
 
 
    

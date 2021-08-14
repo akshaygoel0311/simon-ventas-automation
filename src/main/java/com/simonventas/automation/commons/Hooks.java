@@ -25,6 +25,8 @@ public class Hooks {
 		log.info("Execution Started at: " + date);
 		// Init driver Factories
 		InitAutomation.initDriverFactories();
+		// Init aaplication browser with url
+		InitAutomation.initApplicationBrowser();
 	}
 
 	@BeforeMethod(alwaysRun = true)

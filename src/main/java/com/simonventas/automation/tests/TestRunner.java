@@ -13,7 +13,10 @@ static TestNG testng;
 		 testng = new TestNG();
 		 String product=PropertyManager.getConfigValueByKey("productRun");
 		 if(product.equalsIgnoreCase("Hogar")) {
-			 testng.setTestClasses(new Class[] {Hogar_Test.class});
+			 testng.setTestClasses(new Class[] {TestHogar.class});
+		 }
+		 else if(product.equalsIgnoreCase("Autos")) {
+			 testng.setTestClasses(new Class[] {TestAutos.class}); 
 		 }
 		
 		//testng.addListener(extentlistener);

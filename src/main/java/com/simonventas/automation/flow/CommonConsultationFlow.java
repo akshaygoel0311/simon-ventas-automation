@@ -28,7 +28,7 @@ public class CommonConsultationFlow extends CommonConsultationUI{
 		log.info("Navigated to Common Consultation Menu");
 	}
 
-	public void consultaCotizaciones(String s_no) {
+	public void consultaCotizaciones(int rowNum) {
 		waitTillInvisibilityofCargando();
 		FlowUtil.selectByValue(compania, DataUtil.common_consultation_campania);
 		waitTillInvisibilityofCargando();
@@ -37,8 +37,12 @@ public class CommonConsultationFlow extends CommonConsultationUI{
 		FlowUtil.selectByValue(producto, DataUtil.common_consultation_producto);
 		String numCotiz=dataExcel.getCellData(DataUtil.inputExcelSheetName, "Num_Cotizacion",4);
 		FlowUtil.sendvalue(numero_cotizacion,numCotiz);
-		int n=Integer.parseInt(s_no);
-		int rowNum=n+1;
+		log.info(dataExcel.getCellData(DataUtil.inputExcelSheetName, "Fecha_Desde",rowNum));
+		FlowUtil.clearvalue(fecha_desde);
+		FlowUtil.sendvalue(fecha_desde, dataExcel.getCellData(DataUtil.inputExcelSheetName, "Fecha_Desde",rowNum));
+		log.info(dataExcel.getCellData(DataUtil.inputExcelSheetName, "Fecha_Hasta",rowNum));
+		FlowUtil.clearvalue(fecha_hasta);
+		FlowUtil.sendvalue(fecha_hasta, dataExcel.getCellData(DataUtil.inputExcelSheetName, "Fecha_Hasta",rowNum));
 		dataExcel.setCellData(DataUtil.inputExcelSheetName, "Num_Cotizacion",rowNum,numCotiz);
 		dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Cotizacion",rowNum , "No");
 		dataExcel.setCellData(DataUtil.inputExcelSheetName, "PolicyPDF",rowNum , "Not Executed");
@@ -47,7 +51,7 @@ public class CommonConsultationFlow extends CommonConsultationUI{
 		waitTillInvisibilityofCargando();
 	}
 
-	public void doEmitir(String s_no,String pisos, String num_barrio) {
+	public void doEmitir(int rowNum,String pisos, String num_barrio) {
 		FlowUtil.movetoElement(emitir);
 		FlowUtil.click(emitir);
 		waitTillInvisibilityofCargando();
@@ -127,8 +131,6 @@ public class CommonConsultationFlow extends CommonConsultationUI{
 				waitTillInvisibilityofCargando();
 			}
 			else if(FlowUtil.isElementPresent(add_tomador_error)){
-				int n=Integer.parseInt(s_no);
-				int rowNum=n+1;
 				dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Policy", rowNum, add_tomador_error.getText());
 				FlowUtil.takeFailedScreenshot("emisionPoliza");
 				Assert.fail("Error on Emision Poliza");
@@ -154,8 +156,6 @@ public class CommonConsultationFlow extends CommonConsultationUI{
 		waitTillInvisibilityofCargando();
 		if(FlowUtil.isElementPresent(error)) {
 			log.info("Error is displayed on Emision Poliza:"+error.getText());
-			int n=Integer.parseInt(s_no);
-			int rowNum=n+1;
 			//dataExcel.setCellData("Hogar", "Num_Cotizacion",rowNum ," ");
 			//dataExcel.setCellData("Hogar", "Error", rowNum, " ");
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Policy", rowNum, error.getText());
@@ -167,8 +167,6 @@ public class CommonConsultationFlow extends CommonConsultationUI{
 			FlowUtil.javascriptClick(acceptar);
 			String poliza=numero_poliza.getText();
 			log.info("Numero de poliza: "+poliza);
-			int n=Integer.parseInt(s_no);
-			int rowNum=n+1;
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Policy No", rowNum, poliza);
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Pass/Fail", rowNum, "Pass");
 			dataExcel.setCellData(DataUtil.inputExcelSheetName, "Error_Policy", rowNum, "No");

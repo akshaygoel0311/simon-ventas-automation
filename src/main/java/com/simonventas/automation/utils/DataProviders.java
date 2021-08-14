@@ -37,5 +37,40 @@ public class DataProviders {
 		}
 		return data;
 	}
+	
+	@DataProvider(name="VentasProductData")
+	public static Object[][] getProductData() {
+
+
+
+		ExcelReader excel=new ExcelReader(System.getProperty("user.dir")+"\\Data.xlsx");
+		String sheetName="Product";
+		//String sheetName="Data";//seccionproductSheetName
+		
+		int rows = excel.getRowCount(sheetName);
+		int cols = excel.getColumnCount(sheetName);
+
+		Object[][] data = new Object[rows-1][1];
+
+		Hashtable<String,String> table=null;
+		
+
+
+		for(int rowNum=2; rowNum<=rows; rowNum++){
+			//if(excel.getCellData(sheetName, data_type, rowNum).equalsIgnoreCase("Existing")) {
+
+				table=new Hashtable<String,String>();
+
+				for(int colNum=0; colNum<cols; colNum++){
+
+					table.put(excel.getCellData(sheetName, colNum, 1), excel.getCellData(sheetName, colNum, rowNum));
+					data[rowNum-2][0]=table;
+				}
+			//}
+		}
+
+
+		return data;
+	}
 
 }
